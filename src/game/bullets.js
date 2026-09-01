@@ -1,4 +1,4 @@
-import { PLAYER_BULLET_SPEED, PLAYER_BULLET_RADIUS_BASE } from "./constants.js";
+import { PLAYER_BULLET_SPEED, PLAYER_BULLET_RADIUS_BASE, CANVAS_WIDTH, CANVAS_HEIGHT } from "./constants.js";
 
 
 export function updatePlayerBullets(state) {
@@ -10,9 +10,12 @@ export function updatePlayerBullets(state) {
 
 }
 
-export function updateEnemeyBullets(state) {
+
+
+export function updateEnemyBullets(state) {
 
     state.enemyBullets = state.enemyBullets
-    .map((b) => ({ ...b, y: b.y + b.speed }))
+    .map((b) => ({ ...b, x: b.x + b.vx, y: b.y + b.vy }))
     .filter((b) => b.x > -20 && b.x < CANVAS_WIDTH + 20 && b.y < CANVAS_HEIGHT + 20);
+
 }
